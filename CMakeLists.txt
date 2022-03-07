@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(dynamicParallelTest CUDA CXX)
+project(gpuTester CUDA CXX)
 
 set(default_build_type "Release")
 
@@ -41,7 +41,12 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmax-errors=1 -Wall -Wextra -Wno-sign-compare -pthread -std=c++17 -I/usr/local/cuda/include")
 endif ()
 
+
+add_subdirectory(flatArray)
+#add_subdirectory(utils)
+
 add_executable(${PROJECT_NAME} ./main.cpp)
+
 
 #target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC ${FMM_DIR} ${FSM_DIR} ${FIM_DIR} ${SEGFIM_DIR} ${CUDA_INCLUDE_DIRS} ${GPUDATABASE_DIR} )
 #target_link_libraries(${PROJECT_NAME} PUBLIC fmm fsm fim segfim ds)
