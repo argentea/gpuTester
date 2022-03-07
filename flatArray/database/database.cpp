@@ -1,5 +1,9 @@
 #include"database.h"
 
-namespace FLATARRAY{
+namespace FLATARRAY {
+
+FlatArray::FlatArray(int size): size(size) {
+}
+
 
 };
