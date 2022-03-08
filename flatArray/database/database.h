@@ -1,6 +1,6 @@
 #pragma once
 #include"controller.h"
-#include<fstream>
+#include<iostream>
 
 namespace FLATARRAY {
 
@@ -19,7 +19,9 @@ public:
 	void dToH();
 	void hTod();
 
-	void printHost(std::ofstream o);
+	void printHost(std::ostream o);
+
+	void printCompress(std::ostream o);
 
 private:
     tValue* dv_ptr;
