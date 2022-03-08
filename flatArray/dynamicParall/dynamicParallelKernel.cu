@@ -7,7 +7,8 @@ FaDPSolver::FaDPSolver(tValue* dv_ptr, tSize size):dv_ptr(dv_ptr), size(size){
 }
 
 void FaDPSolver::solve(){
-
+	dynamicParallelKernel<<<1, 32>>>(dv_ptr, size, STEP);
+	gpuErrchk( cudaDeviceSynchronize() );
 }
 
 //step size shouldn't be too small. One child kernel process step size values.

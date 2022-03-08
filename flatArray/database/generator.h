@@ -7,3 +7,4 @@
 
 using namespace FLATARRAY;
 __global__ void incSegGen(tValue* dv_ptr, tSize size, tSize step);
+

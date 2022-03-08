@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include "database.h"
 #include "dynamicParallelKernel.h"
 
@@ -13,9 +14,17 @@ int main(){
 	int testSize = 1024*1024*1024;
 
 	FlatArray fatest;
-	fatest.init(testSize);
+	pTime(fatest.init(testSize));
 
 	FaDPSolver solver(fatest.getDevicePtr(), fatest.getSize());
 	pTime(solver.solve());
+	
+	fatest.dToH();
+	ofstream initTestFile;
+	initTestFile.open("./initTest");
+	fatest.printCompress(initTestFile);
+	initTestFile.close();
+	cerr << "write initTestFile done\n";
+
 	return 0;
 }

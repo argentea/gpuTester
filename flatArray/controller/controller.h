@@ -2,6 +2,8 @@
 namespace FLATARRAY{
 
 typedef float tValue;
-typedef int tSize;
+typedef long long tSize;
+
+const tSize STEP = 2048;
 
 };

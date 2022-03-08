@@ -7,6 +7,9 @@ namespace FLATARRAY{
 
 void FlatArray::dinit(){
 	gpuErrchk(cudaMalloc((void **)&dv_ptr, size*sizeof(tValue)));
+	std::cout << size << std::endl;
+	incSegGen<<<4, 256>>>(dv_ptr, size, STEP);
+	gpuErrchk( cudaDeviceSynchronize() );
 }
 
 void FlatArray::dToH(){
