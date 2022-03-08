@@ -5,8 +5,17 @@
 
 namespace FLATARRAY{
 
-void FlatArray::dinit(tSize isize){
-	gpuErrchk(cudaMalloc((void **)&dv_ptr, isize*sizeof(tSize)));
+void FlatArray::dinit(){
+	gpuErrchk(cudaMalloc((void **)&dv_ptr, size*sizeof(tValue)));
 }
+
+void FlatArray::dToH(){
+	gpuErrchk(cudaMemcpy(hv_ptr, dv_ptr, size*sizeof(tValue), cudaMemcpyDeviceToHost));
+}
+
+void FlatArray::hTod(){
+	gpuErrchk(cudaMemcpy(dv_ptr, hv_ptr, size*sizeof(tValue), cudaMemcpyHostToDevice));
+}
+
 
 };

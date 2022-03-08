@@ -1,11 +1,12 @@
 #pragma once
 #include"controller.h"
+#include<fstream>
 
 namespace FLATARRAY {
 
 class FlatArray {
 public:
-	FlatArray(tSize size);
+	FlatArray();
 
 	tValue* getDevicePtr();
 	tValue* getHostPtr();
@@ -18,7 +19,7 @@ public:
 	void dToH();
 	void hTod();
 
-	void printHost();
+	void printHost(std::ofstream o);
 
 private:
     tValue* dv_ptr;
@@ -26,7 +27,7 @@ private:
 
 	tSize size;
 
-	void dinit(tSize isize);
+	void dinit();
 };
 
 };

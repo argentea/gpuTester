@@ -11,4 +11,4 @@ add_subdirectory(dynamicParall)
 # test
 add_executable(${PROJECT_NAME}_test test.cpp)
 target_include_directories(${PROJECT_NAME}_test PRIVATE ${FADATABASEDIR} ${FADPDIR} ${FACONTROLLERDIR})
-target_link_libraries(${PROJECT_NAME}_test ${FADATABASE} ${FADYNAMICPARALL})
+target_link_libraries(${PROJECT_NAME}_test faDatabase fadynamicParall)

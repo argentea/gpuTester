@@ -3,7 +3,7 @@
 
 namespace FLATARRAY {
 
-FlatArray::FlatArray(int size): size(size) {
+FlatArray::FlatArray() {
 }
 
 tValue* FlatArray::getDevicePtr() {
@@ -23,10 +23,13 @@ void FlatArray::init(tSize isize = 0){
 		size = tsize;
 	}
 	hv_ptr = (tValue*)malloc(tsize*sizeof(tValue));
-
-	dinit(tsize);
-
+	dinit();
 	return;
 }
+
+tSize FlatArray::getSize(){
+	return size;
+}
+
 
 };
