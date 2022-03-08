@@ -37,7 +37,7 @@ dynamicParallelKernel(tValue* dv_ptr, tSize size, tSize step_size){
 
 	int num_launch2 = (size - step_size)/(2*step_size);
 
-	for(int i = threadId; i < num_launch1; i += threadNum){
+	for(int i = threadId; i < num_launch2 ; i += threadNum){
 		dst_ptr = dv_ptr + step_size + i*step_size;
 		src_ptr = dv_ptr + step_size;
 		if((2*i + 1) * step_size > size - step_size){

@@ -16,6 +16,6 @@ int main(){
 	fatest.init(testSize);
 
 	FaDPSolver solver(fatest.getDevicePtr(), fatest.getSize());
-	solver.solve();
+	pTime(solver.solve());
 	return 0;
 }
