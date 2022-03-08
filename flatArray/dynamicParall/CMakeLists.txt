@@ -9,6 +9,6 @@ set(FADPDIR "${CMAKE_CURRENT_LIST_DIR}"
 
 add_library(${TARGET_NAME} STATIC ${SOURCES})
 target_include_directories(${TARGET_NAME} PUBLIC ${FACONTROLLERDIR} ${FADATABASEDIR})
-target_link_libraries(${TARGET_NAME} ${FACONTROLLER} ${FADATABASE})
+target_link_libraries(${TARGET_NAME} facontroller faDatabase)
 
 set_property(TARGET ${TARGET_NAME} PROPERTY CUDA_SEPARABLE_COMPILATION ON)

@@ -1,7 +1,7 @@
 #include <cuda_runtime.h>
 #include <cuda_profiler_api.h>
-#include"database.h"
-
+#include "database.h"
+#include "utils.h"
 
 namespace FLATARRAY{
 

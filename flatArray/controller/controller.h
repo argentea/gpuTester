@@ -1,5 +1,4 @@
-#include"utils.h"
-
+#pragma once
 namespace FLATARRAY{
 
 typedef float tValue;

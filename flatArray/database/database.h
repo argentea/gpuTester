@@ -1,3 +1,4 @@
+#pragma once
 #include"controller.h"
 
 namespace FLATARRAY {
