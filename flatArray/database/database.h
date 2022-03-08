@@ -4,12 +4,12 @@ namespace FLATARRAY {
 
 class FlatArray {
 public:
-	FlatArray(int size);
+	FlatArray(tSize size);
 
 	tValue* getDevicePtr();
 	tValue* getHostPtr();
 
-	void init(int isize);
+	void init(tSize isize);
 	void clean();
 
 	tSize getSize();
@@ -24,6 +24,8 @@ private:
     tValue* hv_ptr;
 
 	tSize size;
+
+	void dinit(tSize isize);
 };
 
 };
