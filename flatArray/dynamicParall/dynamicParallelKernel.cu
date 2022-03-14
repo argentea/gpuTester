@@ -7,7 +7,7 @@ FaDPSolver::FaDPSolver(tValue* dv_ptr, tSize size):dv_ptr(dv_ptr), size(size){
 }
 
 void FaDPSolver::solve(){
-	dynamicParallelKernel<<<1, 32>>>(dv_ptr, size, STEP);
+	dynamicParallelKernel<<<1, 4>>>(dv_ptr, size, STEP);
 	gpuErrchk( cudaDeviceSynchronize() );
 }
 
@@ -24,8 +24,8 @@ dynamicParallelKernel(tValue* dv_ptr, tSize size, tSize step_size){
 	int num_launch1 = size/(2*step_size);
 
 	for(int i = threadId; i < num_launch1; i += threadNum){
-		dst_ptr = dv_ptr + i*step_size;
-		src_ptr = dv_ptr + step_size;
+		dst_ptr = dv_ptr + 2*i*step_size;
+		src_ptr = dst_ptr + step_size;
 		if((2*i + 1) * step_size > size){
 			child_size = size - 2*i*step_size;
 		}else {
@@ -34,13 +34,14 @@ dynamicParallelKernel(tValue* dv_ptr, tSize size, tSize step_size){
 
 		dynamicParallelKernelChild<<<1, 512>>>(dst_ptr, src_ptr, child_size);
 	}
+	cudaDeviceSynchronize();
 	__syncthreads();
 
 	int num_launch2 = (size - step_size)/(2*step_size);
 
 	for(int i = threadId; i < num_launch2 ; i += threadNum){
-		dst_ptr = dv_ptr + step_size + i*step_size;
-		src_ptr = dv_ptr + step_size;
+		dst_ptr = dv_ptr + step_size + 2*i*step_size;
+		src_ptr = dst_ptr + step_size;
 		if((2*i + 1) * step_size > size - step_size){
 			child_size = size - step_size - 2*i*step_size;
 		}else {
@@ -48,8 +49,8 @@ dynamicParallelKernel(tValue* dv_ptr, tSize size, tSize step_size){
 		}
 		dynamicParallelKernelChild<<<1, 512>>>(dst_ptr, src_ptr, child_size);
 	}
+	cudaDeviceSynchronize();
 	__syncthreads();
-
 }
 
 

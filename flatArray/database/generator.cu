@@ -7,9 +7,6 @@ incSegGen(tValue* dv_ptr, tSize size, tSize step){
 	const int blockId = blockIdx.x;
 	const int blockNum = gridDim.x;
 
-	if(threadId == 0){
-		printf("incSegGen\n");
-	}
 
 	int tsize = step;
 	int bucket_num = size/step + 1;

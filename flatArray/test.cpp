@@ -11,20 +11,28 @@ int main(){
 	using namespace FADPKERNEL;
 	cout << "This is flatArray test\n";
 
-	int testSize = 1024*1024*1024;
+	int testSize = 512*1024*1024;
 
 	FlatArray fatest;
 	pTime(fatest.init(testSize));
 
-	FaDPSolver solver(fatest.getDevicePtr(), fatest.getSize());
-	pTime(solver.solve());
-	
 	fatest.dToH();
 	ofstream initTestFile;
 	initTestFile.open("./initTest");
 	fatest.printCompress(initTestFile);
 	initTestFile.close();
 	cerr << "write initTestFile done\n";
+
+	
+	FaDPSolver solver(fatest.getDevicePtr(), fatest.getSize());
+	pTime(solver.solve());
+	
+	fatest.dToH();
+	ofstream ansFile;
+	ansFile.open("./ansFile");
+	fatest.printCompress(ansFile);
+	ansFile.close();
+	cerr << "write ansFile done\n";
 
 	return 0;
 }
